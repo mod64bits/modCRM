@@ -1,0 +1,19 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  web:
+    container_name: ronda_api_service
+    build: .
+    command: python manage.py runserver 0.0.0.0:9010
+    volumes:
+      # Monta o diretório local no contêiner para live-reloading
+      - .:/app
+    ports:
+      - "9010:9010"
+    env_file:
+      - .env
+
+
+# Volume nomeado para persistir os dados do banco de dados
